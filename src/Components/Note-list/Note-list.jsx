@@ -22,7 +22,7 @@ const NoteList = ({ note, setNote }) => {
           <div className="notes" key={note.id}>
             <div>
               {editingId === note.id ? (
-                <input
+                <textarea
                   type="text"
                   defaultValue={note.note}
                   onChange={(e) =>

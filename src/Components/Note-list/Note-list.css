@@ -23,6 +23,7 @@
   border-radius: 2px;
   color: #ffd;
   margin-right: 4px;
+  cursor: pointer;
 }
 .actions {
   margin-top: 10px;

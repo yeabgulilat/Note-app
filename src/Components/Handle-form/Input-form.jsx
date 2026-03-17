@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Input-form.css";
 import NoteList from "../Note-list/Note-list";
 
 export function NoteInput() {
-  const [note, setNote] = useState([]);
+  const [note, setNote] = useState(() => {
+    const savedItem = localStorage.getItem("note");
+    return savedItem ? JSON.parse(savedItem) : [];
+  });
+
   const [input, setInput] = useState("");
   const [tittleInput, setTittleInput] = useState("");
+
+  //updating the localStorage using use Effect.
+  useEffect(() => {
+    localStorage.setItem("note", JSON.stringify(note));
+  }, [note]);
+
   const handleAddItem = (e) => {
     e.preventDefault();
     if (input.trim() === "" && tittleInput.trim() === "") return;
@@ -16,13 +26,6 @@ export function NoteInput() {
     setInput("");
     setTittleInput("");
   };
-
-  // const handleTitle = (e) => {
-  //   e.preventDefault();
-  //   setTittle(tittleInput);
-  //   setNote([...note, { id: Date.now(), note: input, tittle: tittle }]);
-  //   setTittleInput("");
-  // };
 
   return (
     <div className="container">
