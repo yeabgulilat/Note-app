@@ -1,19 +1,8 @@
 import { useState } from "react";
 import "./Note-list.css";
 
-const NoteList = ({ note, setNote }) => {
+const NoteList = ({ note, handleEdit, handleDelete }) => {
   const [editingId, setEditingId] = useState(null);
-
-  const handleEdit = (updatedNote) => {
-    setNote((prevNote) => {
-      return prevNote.map((note) =>
-        updatedNote.id === note.id ? updatedNote : note,
-      );
-    });
-  };
-  const handleDelete = (id) => {
-    setNote((prev) => prev.filter((note) => id !== note.id));
-  };
 
   return (
     <div>
@@ -24,7 +13,7 @@ const NoteList = ({ note, setNote }) => {
               {editingId === note.id ? (
                 <textarea
                   type="text"
-                  defaultValue={note.note}
+                  value={note.note}
                   onChange={(e) =>
                     handleEdit({ ...note, note: e.target.value })
                   }
