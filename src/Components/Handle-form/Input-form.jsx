@@ -1,94 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Input-form.css";
-import NoteList from "../Note-list/Note-list";
-import SearchField from "../Handle-search/Handle-search";
 
-export function NoteInput() {
-  const [note, setNote] = useState(() => {
-    const savedItem = localStorage.getItem("note");
-    return savedItem ? JSON.parse(savedItem) : [];
-  });
-
+export function NoteInput({ onAdd }) {
   const [input, setInput] = useState("");
-  const [tittleInput, setTittleInput] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredNote = note.filter(
-    (note) =>
-      note.tittle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      note.note.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
-  //updating the localStorage using use Effect.
-  useEffect(() => {
-    localStorage.setItem("note", JSON.stringify(note));
-  }, [note]);
+  const [titleInput, setTitleInput] = useState("");
 
   const handleAddItem = (e) => {
     e.preventDefault();
-    if (input.trim() === "" && tittleInput.trim() === "") return;
-    setNote((prev) => [
+    if (!input.trim() || !titleInput.trim()) return;
+    onAdd((prev) => [
       ...prev,
-      { id: Date.now(), note: input, tittle: tittleInput },
+      { id: Date.now(), note: input, title: titleInput },
     ]);
     setInput("");
-    setTittleInput("");
-  };
-  const handleEdit = (updatedNote) => {
-    setNote((prevNote) => {
-      return prevNote.map((note) =>
-        updatedNote.id === note.id ? updatedNote : note,
-      );
-    });
-  };
-  const handleDelete = (id) => {
-    setNote((prev) => prev.filter((note) => id !== note.id));
+    setTitleInput("");
   };
 
   return (
-    <div className="container">
-      {/* <SearchField note={note} /> */}
+    <form onSubmit={handleAddItem}>
       <div>
-        <form
-          action=""
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}>
+        <label>
+          title:
           <input
             type="text"
-            placeholder="Search note..."
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-            }}
+            value={titleInput}
+            onChange={(e) => setTitleInput(e.target.value)}
           />
-          {/* <button type="submit">Search</button> */}
-        </form>
+        </label>
+        <br />
+        <textarea
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button>Add Note</button>
       </div>
-      <form onSubmit={handleAddItem}>
-        <div>
-          <label>
-            tittle:
-            <input
-              type="text"
-              value={tittleInput}
-              onChange={(e) => setTittleInput(e.target.value)}
-            />
-          </label>
-          <br />
-          <textarea
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <button>Add Note</button>
-        </div>
-      </form>
-      <NoteList
-        note={filteredNote}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    </div>
+    </form>
   );
 }
