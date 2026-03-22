@@ -18,22 +18,26 @@ export function NoteInput({ onAdd }) {
 
   return (
     <form onSubmit={handleAddItem}>
-      <div>
-        <label>
-          title:
-          <input
+      <div className="input-container">
+        <div className="input-wrapper">
+          <label>
+            <input
+              placeholder="Tittle"
+              type="text"
+              value={titleInput}
+              onChange={(e) => setTitleInput(e.target.value)}
+              className="title-area"
+            />
+          </label>
+          <textarea
+            className="note-area"
             type="text"
-            value={titleInput}
-            onChange={(e) => setTitleInput(e.target.value)}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="take note"
           />
-        </label>
-        <br />
-        <textarea
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button>Add Note</button>
+          <button className="add-btn">Add Note</button>
+        </div>
       </div>
     </form>
   );

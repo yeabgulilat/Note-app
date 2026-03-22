@@ -1,28 +1,30 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
+import "./Note-item.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function NoteItem({ note }) {
+const NoteItem = forwardRef(({ note, onEdit, onDelete }, ref) => {
   const [editingId, setEditingId] = useState(null);
+  const editArea = (
+    <textarea
+      type="text"
+      value={note.note}
+      onChange={(e) => onEdit({ ...note, note: e.target.value })}
+      className="editing-text-area"
+    />
+  );
   return (
-    <div className="notes">
-      <div>
-        {editingId === note.id ? (
-          <textarea
-            type="text"
-            value={note.note}
-            onChange={(e) => handleEdit({ ...note, note: e.target.value })}
-          />
-        ) : (
-          <div className="notes">
-            <h3 className="tittle">
-              {" "}
-              <span>Tittle:</span> {note.tittle}
-            </h3>
-            <p>{note.note}</p>
-          </div>
-        )}
-      </div>
-      <div className="ations">
-        <button onClick={() => handleDelete(note.id)} className="btn delete">
+    <div ref={ref} className="notes">
+      {editingId === note.id ? (
+        editArea
+      ) : (
+        <div className="notes-item">
+          <h3 className="tittle"> {note.title.toUpperCase()}</h3>
+          <p>{note.note}</p>
+        </div>
+      )}
+      <div className="actions">
+        <button onClick={() => onDelete(note.id)} className="btn delete">
+          <FontAwesomeIcon icon={["fas", "trash"]} />
           Delete
         </button>
         <button
@@ -30,9 +32,13 @@ export default function NoteItem({ note }) {
           onClick={() => {
             setEditingId(editingId === note.id ? null : note.id);
           }}>
-          {editingId === note.id ? "Save" : "Edit Note"}
+          {editingId === note.id ? "Save" : "Update Note"}
         </button>
+      </div>
+      <div className="pin-note">
+        <FontAwesomeIcon icon={["fas", "thumbtack"]} />
       </div>
     </div>
   );
-}
+});
+export default NoteItem;

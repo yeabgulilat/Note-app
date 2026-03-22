@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { NoteInput } from "./Components/Handle-form/Input-form";
 import NoteList from "./Components/Note-list/Note-list";
+import NavBar from "./Components/Nav-bar/Navbar";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+library.add(fas);
+import SideBar from "./Components/Side-bar/Side-bar";
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,23 +35,19 @@ export default function App() {
     setNotes((prev) => prev.filter((note) => id !== note.id));
   };
   return (
-    <div className="container">
-      <form>
-        <label>
-          Search Hear &rarr;
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+    <>
+      <NavBar searchQuery={searchQuery} onSearch={setSearchQuery} />
+      <div className="container">
+        <SideBar />
+        <div>
+          <NoteInput onAdd={setNotes} />
+          <NoteList
+            notes={filteredNote}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
           />
-        </label>
-      </form>
-      <NoteInput onAdd={setNotes} />
-      <NoteList
-        notes={filteredNote}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    </div>
+        </div>
+      </div>
+    </>
   );
 }

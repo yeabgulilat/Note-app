@@ -1,0 +1,99 @@
+.nav-main-container {
+  padding: 6px;
+  width: 100%;
+  max-width: 1650px;
+  margin: 0 auto;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  box-shadow: 2px 2px 4px rgba(90, 89, 89, 0.4);
+}
+.nav-container {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  padding-right: 24px;
+}
+nav .note-icon-img {
+  height: 40px;
+  width: 40px;
+  padding-left: 6px;
+}
+nav .icon {
+  padding: 12px;
+
+  cursor: pointer;
+}
+nav .icon:hover {
+  background-color: rgb(136, 136, 136, 0.3);
+  border-radius: 50%;
+}
+nav .icon:active {
+  background-color: rgb(136, 136, 136, 0.6);
+}
+nav .search-icon {
+  width: 18px;
+  height: 16;
+}
+nav .keep-text {
+  color: #fff;
+  color: #1f1f1f;
+  font-size: 13px;
+  line-height: 27px;
+}
+nav label {
+  display: flex;
+  align-items: center;
+  /* gap: 6px; */
+  width: 70%;
+  box-shadow:
+    inset 1px 1px 0 rgba(8, 164, 71, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+  padding: 8px;
+  border-radius: 6px;
+}
+nav input {
+  height: 32px;
+  min-width: 70%;
+  outline: none;
+  border: solid transparent;
+  border-radius: 5px;
+  background-color: transparent;
+  /* background-color: #333; */
+  padding: 18px 6px;
+  cursor: text;
+  margin: 0;
+}
+nav .search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 8px;
+  padding: 6px;
+  width: 100%;
+}
+.search-bar div {
+  width: 20%;
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  opacity: 0.7;
+}
+.user-identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.profile-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
