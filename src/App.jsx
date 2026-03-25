@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { NoteInput } from "./Components/Handle-form/Input-form";
 import NoteList from "./Components/Note-list/Note-list";
 import NavBar from "./Components/Nav-bar/Navbar";
+import Archive from "./Screen/Archive/Archive";
+import N
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
