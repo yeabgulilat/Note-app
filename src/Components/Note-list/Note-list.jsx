@@ -2,11 +2,11 @@ import "./Note-list.css";
 import NoteItem from "./Note-item";
 import { useEffect, useRef, useState } from "react";
 
-export default function NoteList({ notes, handleEdit, handleDelete }) {
+export default function NoteList({ notes, handleEdit, handleDelete, stat }) {
   const lastNoteRef = useRef(null);
   const isFirstRelod = useRef(true);
   const prevLengthRef = useRef(0);
-
+  console.log("from side bar" + stat);
   useEffect(() => {
     if (isFirstRelod.current) {
       isFirstRelod.current = false;

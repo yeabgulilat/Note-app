@@ -13,6 +13,7 @@ export default function App() {
     const savedItem = localStorage.getItem("notes");
     return savedItem ? JSON.parse(savedItem) : [];
   });
+  const [isMenuClicked, setIsMenuClicked] = useState(true);
 
   //updating the local storage using useEffect
   useEffect(() => {
@@ -36,12 +37,18 @@ export default function App() {
   };
   return (
     <>
-      <NavBar searchQuery={searchQuery} onSearch={setSearchQuery} />
+      <NavBar
+        searchQuery={searchQuery}
+        onSearch={setSearchQuery}
+        isMenuClicked={isMenuClicked}
+        setIsMenuClicked={setIsMenuClicked}
+      />
       <div className="container">
-        <SideBar />
+        <SideBar isMenuClicked={isMenuClicked} />
         <div>
           <NoteInput onAdd={setNotes} />
           <NoteList
+            stat={isMenuClicked}
             notes={filteredNote}
             handleEdit={handleEdit}
             handleDelete={handleDelete}

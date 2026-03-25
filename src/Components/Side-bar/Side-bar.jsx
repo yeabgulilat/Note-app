@@ -1,32 +1,38 @@
 import "./Side-bar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SideBar = () => {
+const SideBar = ({ isMenuClicked }) => {
   return (
-    <div className="sidebar-main-container">
+    <div className="sidebar-main-container ">
       <div className="side-bar-elements-container">
-        <div className="side-bar-element">
+        <div className="side-bar-element ">
           <FontAwesomeIcon icon={["fas", "lightbulb"]} />
-          Notes
+          <span className={isMenuClicked && "collapse-elements"}>Notes</span>
         </div>
         <div className="side-bar-element">
           <FontAwesomeIcon icon={["fas", "alarm-clock"]} />
-          Reminders
+          <span className={isMenuClicked && "collapse-elements"}>
+            Reminders
+          </span>
         </div>
         <div className="side-bar-element">
           <FontAwesomeIcon icon={["fas", "pen"]} />
-          Edit labels
+          <span className={isMenuClicked && "collapse-elements"}>
+            Edit labels
+          </span>
         </div>
         <div className="side-bar-element">
           <FontAwesomeIcon icon={["fas", "box-archive"]} />
-          Archive
+          <span className={isMenuClicked && "collapse-elements"}>Archive</span>
         </div>
         <div className="side-bar-element">
           <FontAwesomeIcon icon={["fas", "trash-can"]} />
-          Bin
+          <span className={isMenuClicked && "collapse-elements"}>Bin</span>
         </div>
-        <a href="#" className="licence">
-          pen-source licence
+        <a
+          href="#"
+          className={!isMenuClicked ? "licence" : "collapse-elements"}>
+          Open-source licence
         </a>
       </div>
     </div>

@@ -1,16 +1,22 @@
 .side-bar-elements-container {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  /* background-color: gray; */
   position: fixed;
+  width: auto;
   z-index: 12;
-  box-shadow: 2px 2px 4px rgb(187, 185, 185);
+  /* box-shadow: 2px 2px 4px rgb(187, 185, 185); */
   top: 80px;
   bottom: 0;
+  overflow: hidden;
+  /* transition: 3s; */
+  transition: width 0.3s ease;
 }
-
+.collaps-container {
+  width: 60px;
+}
 .side-bar-element {
-  width: 100%;
+  /* width: 100%; */
   width: 280px;
   padding: 18px;
   border-top-right-radius: 30px;
@@ -18,8 +24,14 @@
   cursor: pointer;
   display: flex;
   gap: 10px;
-  transition: 0.1s;
 }
 .side-bar-element:hover {
   background-color: #e6eded;
+}
+
+.side-bar-element:active {
+  background-color: #a9acac;
+}
+.collapse-elements {
+  opacity: 0;
 }

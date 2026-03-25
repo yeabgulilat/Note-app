@@ -1,14 +1,22 @@
+import { useState } from "react";
 import "./NavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import noteIcon from "../../assets/note-icon.png";
 import profileImg from "../../assets/profile-pic.jpg";
 
-export default function NavBar({ searchQuery, onSearch }) {
+export default function NavBar({ searchQuery, onSearch, setIsMenuClicked }) {
   return (
     <div className="nav-main-container">
       <nav className="nav-container">
         <div className="menu">
-          <FontAwesomeIcon icon={["fas", "bars"]} className="icon" />
+          <FontAwesomeIcon
+            icon={["fas", "bars"]}
+            className="icon"
+            onClick={() => {
+              setIsMenuClicked((prev) => !prev);
+              // console.log("Menu is clicked");
+            }}
+          />
           <img src={noteIcon} alt="" className="note-icon-img" />
           <span className="keep-text">Keep</span>
         </div>
