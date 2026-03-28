@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react";
-import { NoteInput } from "./Components/Handle-form/Input-form";
-import NoteList from "./Components/Note-list/Note-list";
-import NavBar from "./Components/Nav-bar/Navbar";
+import { Routes, BrowserRouter, Route, Link } from "react-router";
+
 import Archive from "./Screen/Archive/Archive";
-import N
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-library.add(fas);
+import Bin from "./Screen/Bin/Bin";
+import Home from "./Screen/Home/Home";
+import NavBar from "./Components/Nav-bar/Navbar";
 import SideBar from "./Components/Side-bar/Side-bar";
 
 export default function App() {
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [notes, setNotes] = useState(() => {
     const savedItem = localStorage.getItem("notes");
     return savedItem ? JSON.parse(savedItem) : [];
   });
-  const [isMenuClicked, setIsMenuClicked] = useState(true);
 
   //updating the local storage using useEffect
   useEffect(() => {
@@ -34,28 +32,82 @@ export default function App() {
       );
     });
   };
-  const handleDelete = (id) => {
-    setNotes((prev) => prev.filter((note) => id !== note.id));
+  const moveToTrash = (id) => {
+    setNotes((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, bin: !item.bin } : item)),
+    );
   };
+  const handleDelete = (id) => {
+    setNotes((prev) => prev.filter((note) => note.id === id));
+  };
+
+  const handleArchive = (id) => {
+    setNotes((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, archived: !item.archived } : item,
+      ),
+    );
+  };
+  const archivedNotes = filteredNote.filter(
+    (note) => note.archived && !note.bin,
+  );
+  const binedNote = filteredNote.filter((note) => note.bin);
   return (
     <>
-      <NavBar
-        searchQuery={searchQuery}
-        onSearch={setSearchQuery}
-        isMenuClicked={isMenuClicked}
-        setIsMenuClicked={setIsMenuClicked}
-      />
-      <div className="container">
-        <SideBar isMenuClicked={isMenuClicked} />
+      <BrowserRouter>
+        <NavBar
+          searchQuery={searchQuery}
+          onSearch={setSearchQuery}
+          setIsMenuClicked={setIsMenuClicked}
+        />
+
         <div>
-          <NoteInput onAdd={setNotes} />
-          <NoteList
-            stat={isMenuClicked}
-            notes={filteredNote}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-          />
+          <SideBar isMenuClicked={isMenuClicked} />
         </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                isMenuClicked={isMenuClicked}
+                filteredNote={filteredNote}
+                handleDelete={moveToTrash}
+                handleEdit={handleEdit}
+                setNotes={setNotes}
+                handleArchive={handleArchive}
+              />
+            }
+          />
+          <Route
+            path="/bin"
+            element={
+              <Bin
+                recycleBin={binedNote}
+                handleDelete={moveToTrash}
+                removeFromBin={handleDelete}
+                // handleArchive={handleArchive}
+              />
+            }
+          />
+          <Route
+            path="/archive"
+            element={
+              <Archive
+                archivedNotes={archivedNotes}
+                handleDelete={handleDelete}
+                handleArchive={handleArchive}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      <div className="bg-blue-800 p-6 text-violet-700 font-bold flex gap-3 sm:text-left    mb-100 ">
+        <div className="bg-amber-700 text-green-800  ">FROM TAILWIND CSS 1</div>
+        <div className="bg-[aqua] rounded-2xl">FROM TAILWIND CSS 1</div>
+        <div className="bg-green-400">FROM TAILWIND CSS 1</div>
+        <div className="bg-amber-700 ">FROM TAILWIND CSS 1</div>
+        <div className="bg-[aqua] ">FROM TAILWIND CSS 1</div>
+        <div className="bg-green-400 rounded-e-xl ">FROM TAILWIND CSS 1</div>
       </div>
     </>
   );

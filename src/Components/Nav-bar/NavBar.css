@@ -8,6 +8,7 @@
   top: 0;
   z-index: 10;
   box-shadow: 2px 2px 4px rgba(90, 89, 89, 0.4);
+  /* display: none; */
 }
 .nav-container {
   padding: 0 10px;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./NavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import noteIcon from "../../assets/note-icon.png";
@@ -9,23 +9,27 @@ export default function NavBar({ searchQuery, onSearch, setIsMenuClicked }) {
     <div className="nav-main-container">
       <nav className="nav-container">
         <div className="menu">
-          <FontAwesomeIcon
-            icon={["fas", "bars"]}
-            className="icon"
-            onClick={() => {
-              setIsMenuClicked((prev) => !prev);
-              // console.log("Menu is clicked");
-            }}
-          />
+          <span title="menu">
+            <FontAwesomeIcon
+              icon={["fas", "bars"]}
+              className="icon"
+              onClick={() => {
+                setIsMenuClicked((prev) => !prev);
+              }}
+            />
+          </span>
+
           <img src={noteIcon} alt="" className="note-icon-img" />
           <span className="keep-text">Keep</span>
         </div>
         <div className="search-bar">
           <label>
-            <FontAwesomeIcon
-              icon={["fas", "magnifying-glass"]}
-              className="icon search-icon"
-            />
+            <span title="search">
+              <FontAwesomeIcon
+                icon={["fas", "magnifying-glass"]}
+                className="icon search-icon"
+              />
+            </span>
             <input
               placeholder="Search"
               value={searchQuery}

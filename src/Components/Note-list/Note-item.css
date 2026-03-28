@@ -4,29 +4,25 @@
   font-size: 20px;
   margin-bottom: 18px;
 }
-.notes {
-  background: white;
+/* .notes {
   padding: 6px;
   border-radius: 8px;
-  /* margin-bottom: 16px; */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px #0000001a;
   position: relative;
   background-color: #ff3;
   display: flex;
-  /* width: 21rem; */
   width: 80%;
   padding-bottom: 52px;
-  /* break-inside: avoid; */
-}
-.notes-item {
+} */
+/* .notes-item {
   width: 21rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 32px;
   border-radius: 10px;
-}
-.notes-item p {
+} */
+/* .notes-item p {
   line-height: 1.6;
-}
+} */
 .editing-text-area {
   padding: 8px 24px 24px 8px;
   field-sizing: content;
@@ -73,6 +69,31 @@
 .pin-note:active {
   color: #000;
 }
+.archive-notes-container {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+.archive-notes {
+  position: relative;
+  display: inline-block;
+}
+.archive-notes .hover-archive-text {
+  position: absolute;
+  bottom: 100%;
+  /* visibility: hidden; */
+  bottom: 100%; /* Positions text above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  /* transition: opacity 3s; */
+}
+
 .licence {
   position: fixed;
   bottom: 30px;

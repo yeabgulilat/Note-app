@@ -2,8 +2,9 @@ import { useState, forwardRef } from "react";
 import "./Note-item.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const NoteItem = forwardRef(({ note, onEdit, onDelete }, ref) => {
+const NoteItem = forwardRef(({ note, onEdit, onDelete, onArchive }, ref) => {
   const [editingId, setEditingId] = useState(null);
+
   const editArea = (
     <textarea
       type="text"
@@ -13,20 +14,23 @@ const NoteItem = forwardRef(({ note, onEdit, onDelete }, ref) => {
     />
   );
   return (
-    <div ref={ref} className="notes">
+    <div
+      ref={ref}
+      className="bg-[#ff3] p-1.5 rounded-lg  relative flex w-[80%] pb-13 shadow-[0_2px_6px_#0000001a] ">
       {editingId === note.id ? (
         editArea
       ) : (
-        <div className="notes-item">
-          <h3 className="tittle"> {note.title.toUpperCase()}</h3>
-          <p>{note.note}</p>
+        <div className="w-84 shadow-[0_2px_6px_#0000001a] p-8 rounded-[10px]">
+          <h3 className=""> {note.title.toUpperCase()}</h3>
+          <p className="leading-[1.6]">{note.note}</p>
         </div>
       )}
-      <div className="actions">
-        <button onClick={() => onDelete(note.id)} className="btn delete">
+      <div className="mt-2.5 absolute right-1 bottom-2">
+        <button className="btn delete" onClick={() => onDelete(note.id)}>
           <FontAwesomeIcon icon={["fas", "trash"]} />
           Delete
         </button>
+
         <button
           className="btn edit"
           onClick={() => {
@@ -35,6 +39,11 @@ const NoteItem = forwardRef(({ note, onEdit, onDelete }, ref) => {
           {editingId === note.id ? "Save" : "Update Note"}
         </button>
       </div>
+      <span title="archive" className="archive-notes-container">
+        <button onClick={() => onArchive(note.id)}>
+          <FontAwesomeIcon icon={["fas", "trash"]} color="blue" />
+        </button>
+      </span>
       <div className="pin-note">
         <FontAwesomeIcon icon={["fas", "thumbtack"]} />
       </div>

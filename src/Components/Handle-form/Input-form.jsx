@@ -10,7 +10,13 @@ export function NoteInput({ onAdd }) {
     if (!input.trim() || !titleInput.trim()) return;
     onAdd((prev) => [
       ...prev,
-      { id: Date.now(), note: input, title: titleInput },
+      {
+        id: Date.now(),
+        note: input,
+        title: titleInput,
+        archived: false,
+        bin: false,
+      },
     ]);
     setInput("");
     setTitleInput("");
