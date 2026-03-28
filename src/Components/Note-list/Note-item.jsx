@@ -10,7 +10,8 @@ const NoteItem = forwardRef(({ note, onEdit, onDelete, onArchive }, ref) => {
       type="text"
       value={note.note}
       onChange={(e) => onEdit({ ...note, note: e.target.value })}
-      className="editing-text-area"
+      className="field-sizing-content resize-none 
+       pt-2 pr-24 pb-24 pl-2 outline-0 w-full bg-white"
     />
   );
   return (
