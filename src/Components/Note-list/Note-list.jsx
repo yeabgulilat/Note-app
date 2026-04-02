@@ -1,7 +1,6 @@
 import "./Note-list.css";
 import NoteItem from "./Note-item";
-import { useState, useEffect, useRef } from "react";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { useEffect, useRef } from "react";
 
 export default function NoteList({
   // setNotes,

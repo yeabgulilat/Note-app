@@ -19,6 +19,7 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
+  // localStorage.clear();
 
   const filteredNote = notes.filter(
     (note) =>
