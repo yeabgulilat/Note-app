@@ -9,7 +9,7 @@ export default function Archive({
 }) {
   // return <div className="archive">This is from the Archive</div>;
   return (
-    <div className="archive">
+    <div className="w-fit p-10 bg-[aqua] mt-50 ml-70">
       <NoteList
         notes={archivedNotes}
         handleArchive={handleArchive}

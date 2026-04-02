@@ -14,7 +14,7 @@ export default function Home({
 }) {
   return (
     <>
-      <div className="container">
+      <div className="mt-26 grid grid-cols-[280px_1fr] gap-x-1.5">
         <div></div>
         <div>
           <NoteInput onAdd={setNotes} />

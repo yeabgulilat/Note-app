@@ -16,6 +16,7 @@ export function NoteInput({ onAdd }) {
         title: titleInput,
         archived: false,
         bin: false,
+        state: "",
       },
     ]);
     setInput("");

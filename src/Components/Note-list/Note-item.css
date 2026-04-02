@@ -1,9 +1,9 @@
-.tittle {
+/* .tittle {
   font-weight: 700;
   color: #111;
   font-size: 20px;
   margin-bottom: 18px;
-}
+} */
 /* .notes {
   padding: 6px;
   border-radius: 8px;
@@ -23,20 +23,20 @@
 /* .notes-item p {
   line-height: 1.6;
 } */
-.editing-text-area {
+/* .editing-text-area {
   padding: 8px 24px 24px 8px;
   field-sizing: content;
   width: 100%;
   resize: none;
   outline: 0;
-}
-.actions {
+} */
+/* .actions {
   margin-top: 10px;
   position: absolute;
   right: 4px;
   bottom: 8px;
-}
-.btn {
+} */
+/* .btn {
   padding: 3px 5px;
   border: none;
   border-radius: 5px;
@@ -49,27 +49,25 @@
 }
 .edit {
   background-color: #7fff00;
-}
-.pin-note {
-  /* color: #f00; */
+} */
+/* .pin-note {
   padding: 10px;
   position: absolute;
   top: 24px;
   right: 18px;
   opacity: 0.8;
   cursor: pointer;
-  /* display: none; */
-}
-.pin-note:hover {
+} */
+/* .pin-note:hover {
   opacity: 0.8;
   background-color: #777;
   color: #fff;
   border-radius: 50%;
-}
-.pin-note:active {
+} */
+/* .pin-note:active {
   color: #000;
-}
-.archive-notes-container {
+} */
+/* .archive-notes-container {
   position: absolute;
   bottom: 8px;
   left: 8px;
@@ -81,8 +79,8 @@
 .archive-notes .hover-archive-text {
   position: absolute;
   bottom: 100%;
-  /* visibility: hidden; */
-  bottom: 100%; /* Positions text above the icon */
+  visibility: hidden;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   background-color: black;
@@ -91,16 +89,14 @@
   border-radius: 4px;
   white-space: nowrap;
   opacity: 0;
-  /* transition: opacity 3s; */
-}
+} */
 
-.licence {
+/* .licence {
   position: fixed;
   bottom: 30px;
   left: 16px;
   text-decoration: none;
   font-weight: 400;
   font-size: 14px;
-  letter-spacing: 2px;
   color: #777;
-}
+} */

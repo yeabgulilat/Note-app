@@ -8,9 +8,9 @@ body {
   box-sizing: border-box;
 }
 
-.container {
+/* .container {
   margin-top: 106px;
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 6px;
-}
+} */

@@ -5,6 +5,7 @@ import Archive from "./Screen/Archive/Archive";
 import Bin from "./Screen/Bin/Bin";
 import Home from "./Screen/Home/Home";
 import NavBar from "./Components/Nav-bar/Navbar";
+import Reminders from "./Screen/Reminders/Reminders";
 import SideBar from "./Components/Side-bar/Side-bar";
 
 export default function App() {
@@ -14,7 +15,6 @@ export default function App() {
     const savedItem = localStorage.getItem("notes");
     return savedItem ? JSON.parse(savedItem) : [];
   });
-
   //updating the local storage using useEffect
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
@@ -37,9 +37,6 @@ export default function App() {
       prev.map((item) => (item.id === id ? { ...item, bin: !item.bin } : item)),
     );
   };
-  const handleDelete = (id) => {
-    setNotes((prev) => prev.filter((note) => note.id === id));
-  };
 
   const handleArchive = (id) => {
     setNotes((prev) =>
@@ -48,6 +45,17 @@ export default function App() {
       ),
     );
   };
+
+  // const displayNote = () => {
+  //   setNotes((prev) => {
+  //     if (prev.state === "home")
+  //       prev.filter((homeNote) => !homeNote.bin && !homeNote.archived);
+  //     if (prev.state === "bin") prev.filter((homeNote) => homeNote.bin);
+  //     if (prev.state === "archive")
+  //       prev.filter((homeNote) => !homeNote.bin && homeNote.archived);
+  //   });
+  // };
+
   const archivedNotes = filteredNote.filter(
     (note) => note.archived && !note.bin,
   );
@@ -70,7 +78,9 @@ export default function App() {
             element={
               <Home
                 isMenuClicked={isMenuClicked}
-                filteredNote={filteredNote}
+                filteredNote={filteredNote.filter(
+                  (note) => !note.bin && !note.archived,
+                )}
                 handleDelete={moveToTrash}
                 handleEdit={handleEdit}
                 setNotes={setNotes}
@@ -78,13 +88,14 @@ export default function App() {
               />
             }
           />
+          <Route path="/reminders" element={<Reminders />} />
           <Route
             path="/bin"
             element={
               <Bin
                 recycleBin={binedNote}
                 handleDelete={moveToTrash}
-                removeFromBin={handleDelete}
+                removeFromBin={moveToTrash}
                 // handleArchive={handleArchive}
               />
             }
@@ -94,21 +105,13 @@ export default function App() {
             element={
               <Archive
                 archivedNotes={archivedNotes}
-                handleDelete={handleDelete}
+                handleDelete={moveToTrash}
                 handleArchive={handleArchive}
               />
             }
           />
         </Routes>
       </BrowserRouter>
-      <div className="bg-blue-800 p-6 text-violet-700 font-bold flex gap-3 sm:text-left    mb-100 ">
-        <div className="bg-amber-700 text-green-800  ">FROM TAILWIND CSS 1</div>
-        <div className="bg-[aqua] rounded-2xl">FROM TAILWIND CSS 1</div>
-        <div className="bg-green-400">FROM TAILWIND CSS 1</div>
-        <div className="bg-amber-700 ">FROM TAILWIND CSS 1</div>
-        <div className="bg-[aqua] ">FROM TAILWIND CSS 1</div>
-        <div className="bg-green-400 rounded-e-xl ">FROM TAILWIND CSS 1</div>
-      </div>
     </>
   );
 }
