@@ -30,7 +30,7 @@ export default function NoteList({
 
   return (
     <>
-      <div className="list-container">
+      <div className="bg-blue-500 p-7.5 rounded-lg grid grid-cols-1 gap-y-4 xl:grid-cols-3 md:grid-cols-2">
         {notes.map((note, index) => {
           return (
             <NoteItem

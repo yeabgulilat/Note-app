@@ -5,20 +5,19 @@ import { NavLink } from "react-router";
 const SideBar = ({ isMenuClicked }) => {
   return (
     <div>
-      <div className="flex flex-col fixed w-auto z-12 top-21.5 bottom-0 overflow-hidden ">
+      <div
+        className={`flex flex-col fixed  z-12 top-21.5 bottom-0  ${isMenuClicked ? "w-15" : ""} `}>
         <NavLink
-          className="w-70 p-4.5 rounded-r-4xl cursor-pointer flex gap-3 hover:bg-[#e6eded] active:bg-[#a9acac]"
-          style={({ isActive }) =>
-            isActive
-              ? {
-                  fontWeight: "bold",
-                  backgroundColor: "rgba(255, 255, 0, 0.516)",
-                }
-              : undefined
-          }
+          className={({
+            isActive,
+          }) => ` w-full hover:w-70 p-4.5 rounded-r-4xl cursor-pointer flex gap-3  group
+           ${isActive ? "font-bold bg-[#ffff0084] " : "hover:bg-[#e6eded] active:bg-[#a9acac]  "}`}
           to="/">
           <FontAwesomeIcon icon={["fas", "lightbulb"]} />
-          <span className={isMenuClicked ? "opacity-0" : ""}>Notes</span>
+          <span
+            className={`${isMenuClicked ? "opacity-0 " : ""} group-hover:opacity-100 `}>
+            Notes
+          </span>
         </NavLink>
         <NavLink
           to="/reminders"

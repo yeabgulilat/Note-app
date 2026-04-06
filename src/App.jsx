@@ -47,20 +47,10 @@ export default function App() {
     );
   };
 
-  // const displayNote = () => {
-  //   setNotes((prev) => {
-  //     if (prev.state === "home")
-  //       prev.filter((homeNote) => !homeNote.bin && !homeNote.archived);
-  //     if (prev.state === "bin") prev.filter((homeNote) => homeNote.bin);
-  //     if (prev.state === "archive")
-  //       prev.filter((homeNote) => !homeNote.bin && homeNote.archived);
-  //   });
-  // };
-
   const archivedNotes = filteredNote.filter(
     (note) => note.archived && !note.bin,
   );
-  const binedNote = filteredNote.filter((note) => note.bin);
+  // const binedNote = filteredNote.filter((note) => note.bin);
   return (
     <>
       <BrowserRouter>
@@ -69,49 +59,49 @@ export default function App() {
           onSearch={setSearchQuery}
           setIsMenuClicked={setIsMenuClicked}
         />
-
         <div>
           <SideBar isMenuClicked={isMenuClicked} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  isMenuClicked={isMenuClicked}
+                  filteredNote={filteredNote.filter(
+                    (note) => !note.bin && !note.archived,
+                  )}
+                  handleDelete={moveToTrash}
+                  handleEdit={handleEdit}
+                  s
+                  setNotes={setNotes}
+                  handleArchive={handleArchive}
+                />
+              }
+            />
+            <Route path="/reminders" element={<Reminders />} />
+            <Route
+              path="/bin"
+              element={
+                <Bin
+                  recycleBin={filteredNote.filter((note) => note.bin)}
+                  handleDelete={moveToTrash}
+                  removeFromBin={moveToTrash}
+                  // handleArchive={handleArchive}
+                />
+              }
+            />
+            <Route
+              path="/archive"
+              element={
+                <Archive
+                  archivedNotes={archivedNotes}
+                  handleDelete={moveToTrash}
+                  handleArchive={handleArchive}
+                />
+              }
+            />
+          </Routes>
         </div>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                isMenuClicked={isMenuClicked}
-                filteredNote={filteredNote.filter(
-                  (note) => !note.bin && !note.archived,
-                )}
-                handleDelete={moveToTrash}
-                handleEdit={handleEdit}
-                setNotes={setNotes}
-                handleArchive={handleArchive}
-              />
-            }
-          />
-          <Route path="/reminders" element={<Reminders />} />
-          <Route
-            path="/bin"
-            element={
-              <Bin
-                recycleBin={binedNote}
-                handleDelete={moveToTrash}
-                removeFromBin={moveToTrash}
-                // handleArchive={handleArchive}
-              />
-            }
-          />
-          <Route
-            path="/archive"
-            element={
-              <Archive
-                archivedNotes={archivedNotes}
-                handleDelete={moveToTrash}
-                handleArchive={handleArchive}
-              />
-            }
-          />
-        </Routes>
       </BrowserRouter>
     </>
   );

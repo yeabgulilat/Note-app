@@ -14,19 +14,16 @@ export default function Home({
 }) {
   return (
     <>
-      <div className="mt-26 grid grid-cols-[280px_1fr] gap-x-1.5">
-        <div></div>
-        <div>
-          <NoteInput onAdd={setNotes} />
-          <NoteList
-            setNotes={setNotes}
-            stat={isMenuClicked}
-            notes={filteredNote}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            handleArchive={handleArchive}
-          />
-        </div>
+      <div className={`mt-26 ${isMenuClicked ? "ml-17.5" : "ml-70"} `}>
+        <NoteInput onAdd={setNotes} />
+        <NoteList
+          setNotes={setNotes}
+          stat={isMenuClicked}
+          notes={filteredNote}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          handleArchive={handleArchive}
+        />
       </div>
     </>
   );

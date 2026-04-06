@@ -1,4 +1,4 @@
-.nav-main-container {
+/* .nav-main-container {
   padding: 6px;
   width: 100%;
   max-width: 1650px;
@@ -7,21 +7,16 @@
   position: fixed;
   top: 0;
   z-index: 10;
-  box-shadow: 2px 2px 4px rgba(90, 89, 89, 0.4);
-  /* display: none; */
-}
-.nav-container {
+  box-shadow: 2px 2px 4px #5a595966;
+} */
+/* .nav-container {
   padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 48px;
-}
-.menu {
-  display: flex;
-  align-items: center;
-  padding-right: 24px;
-}
+} */
+
 nav .note-icon-img {
   height: 40px;
   width: 40px;
@@ -29,15 +24,14 @@ nav .note-icon-img {
 }
 nav .icon {
   padding: 12px;
-
   cursor: pointer;
 }
 nav .icon:hover {
-  background-color: rgb(136, 136, 136, 0.3);
+  background-color: #8888884d;
   border-radius: 50%;
 }
 nav .icon:active {
-  background-color: rgb(136, 136, 136, 0.6);
+  background-color: #88888899;
 }
 nav .search-icon {
   width: 18px;
@@ -47,7 +41,7 @@ nav .keep-text {
   color: #fff;
   color: #1f1f1f;
   font-size: 13px;
-  line-height: 27px;
+  /* line-height: 27px; */
 }
 nav label {
   display: flex;
