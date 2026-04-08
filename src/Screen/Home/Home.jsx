@@ -14,8 +14,9 @@ export default function Home({
 }) {
   return (
     <>
-      <div className={`mt-26 ${isMenuClicked ? "ml-17.5" : "ml-70"} `}>
+      <div className={`mt-26 ${isMenuClicked ? "ml-71" : "ml-17.5"} `}>
         <NoteInput onAdd={setNotes} />
+        {filteredNote.length === 0 && <p>saved note empty</p>}
         <NoteList
           setNotes={setNotes}
           stat={isMenuClicked}

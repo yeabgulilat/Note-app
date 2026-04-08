@@ -1,4 +1,3 @@
-import "./Note-list.css";
 import NoteItem from "./Note-item";
 import { useEffect, useRef } from "react";
 

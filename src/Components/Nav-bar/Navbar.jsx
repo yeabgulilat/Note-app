@@ -1,13 +1,24 @@
-// import { useState } from "react";
-// import "./NavBar.css";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import noteIcon from "../../assets/note-icon.png";
 import profileImg from "../../assets/profile-pic.jpg";
 
 export default function NavBar({ searchQuery, onSearch, setIsMenuClicked }) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+    addEventListener("scroll", handleScroll);
+    return () => {
+      removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="p-[6px_30px] w-full  m-[0_auto] bg-white fixed top-0 z-10 shadow-[2px_2px_4px_#5a595966]">
-      <nav className="p-[0_10px] flex justify-between items-center gap-12">
+    <div
+      className={`p-[6px_30px] w-full  m-[0_auto]  fixed top-0 z-10 shadow-[2px_2px_4px_#5a595966] ${scrolled ? "bg-blue-300" : "bg-white"} `}>
+      <nav className={"p-[0_10px] flex justify-between items-center  gap-12 "}>
         <div className="flex items-center pr-12 ">
           {/*----------MENU OPTION -------- */}
           <span title="menu">

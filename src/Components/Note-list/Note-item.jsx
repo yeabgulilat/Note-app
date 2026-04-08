@@ -1,5 +1,4 @@
 import { useState, forwardRef } from "react";
-import "./Note-item.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NoteItem = forwardRef(({ note, onEdit, onDelete, onArchive }, ref) => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, BrowserRouter, Route, Link } from "react-router";
+import { Routes, BrowserRouter, Route } from "react-router";
 
 import Archive from "./Screen/Archive/Archive";
 import Bin from "./Screen/Bin/Bin";
@@ -9,17 +9,24 @@ import Reminders from "./Screen/Reminders/Reminders";
 import SideBar from "./Components/Side-bar/Side-bar";
 
 export default function App() {
-  const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [isMenuClicked, setIsMenuClicked] = useState(() => {
+    const clicked = localStorage.getItem("isMenuClicked");
+    return clicked ? JSON.parse(clicked) : false;
+  });
   const [searchQuery, setSearchQuery] = useState("");
   const [notes, setNotes] = useState(() => {
     const savedItem = localStorage.getItem("notes");
     return savedItem ? JSON.parse(savedItem) : [];
   });
-  //updating the local storage using useEffect
+  //updating the local storage to save notes using useEffect
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
-  // localStorage.clear();
+
+  //updating local storage for menu click
+  useEffect(() => {
+    localStorage.setItem("isMenuClicked", JSON.stringify(isMenuClicked));
+  }, [isMenuClicked]);
 
   const filteredNote = notes.filter(
     (note) =>
@@ -35,7 +42,9 @@ export default function App() {
   };
   const moveToTrash = (id) => {
     setNotes((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, bin: !item.bin } : item)),
+      prev.map((item) =>
+        item.id === id ? { ...item, bin: !item.bin, archived: false } : item,
+      ),
     );
   };
 
@@ -86,6 +95,7 @@ export default function App() {
                   recycleBin={filteredNote.filter((note) => note.bin)}
                   handleDelete={moveToTrash}
                   removeFromBin={moveToTrash}
+                  isMenuClicked={isMenuClicked}
                   // handleArchive={handleArchive}
                 />
               }
@@ -97,6 +107,7 @@ export default function App() {
                   archivedNotes={archivedNotes}
                   handleDelete={moveToTrash}
                   handleArchive={handleArchive}
+                  isMenuClicked={isMenuClicked}
                 />
               }
             />

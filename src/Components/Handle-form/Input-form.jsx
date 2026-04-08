@@ -28,7 +28,7 @@ export function NoteInput({ onAdd }) {
         <div className="flex flex-col w-118.75 rounded-lg shadow-[3px_9px_6px_#ccc] relative m-[18px_0] ">
           <label>
             <input
-              placeholder="Tittle"
+              placeholder="Title"
               type="text"
               value={titleInput}
               onChange={(e) => setTitleInput(e.target.value)}
