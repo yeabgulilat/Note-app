@@ -17,7 +17,7 @@ export default function NavBar({ searchQuery, onSearch, setIsMenuClicked }) {
   }, []);
   return (
     <div
-      className={`p-[6px_30px] w-full  m-[0_auto]  fixed top-0 z-10 shadow-[2px_2px_4px_#5a595966] ${scrolled ? "bg-blue-300" : "bg-white"} `}>
+      className={`p-[6px_30px] w-full  m-[0_auto]  fixed top-0 z-10 shadow-[2px_2px_4px_#5a595966] ${scrolled ? "bg-blue-300" : "bg-blue-950"} `}>
       <nav className={"p-[0_10px] flex justify-between items-center  gap-12 "}>
         <div className="flex items-center pr-12 ">
           {/*----------MENU OPTION -------- */}
